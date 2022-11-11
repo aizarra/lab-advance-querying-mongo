@@ -70,7 +70,7 @@
 ### 9. Order all the companies by their IPO price in a descending order.
 
 - **`query`**: 
-- **`projection`**: { "ipo.valuation_amount": 1}
+- **`projection`**: 
 - **`sort`**: { "ipo.valuation_amount": -1}
 - **`skip`**: 
 - **`limit`**: 
@@ -85,7 +85,7 @@
 
 ### 11. All the companies founded on the second semester of the year. Limit your search to 1000 companies.
 
-- **`query`**: {founded_month: {$gte: 6}}
+- **`query`**: {founded_month: {$gte: 7}}
 - **`projection`**: 
 - **`sort`**: 
 - **`skip`**: 
@@ -103,7 +103,7 @@
 
 - **`query`**: { "acquisition.acquired_year": {$gt: 2010}}
 - **`projection`**: {name: 1, acquisition: 1}
-- **`sort`**: {"acquisition.price_amount": 1}
+- **`sort`**: {"acquisition.price_amount": -1}
 - **`skip`**: 
 - **`limit`**: 
 
@@ -117,17 +117,17 @@
 
 ### 15. All the companies that have been founded on the first seven days of the month, including the seventh. Sort them by their `acquisition price` in a descending order. Limit the search to 10 documents.
 
-- **`query`**: {founded_day: {$gte: 7}}
+- **`query`**: {founded_day: {$lte: 7}}
 - **`projection`**: 
 - **`sort`**: {"acquisition.price_amount": -1}
 - **`skip`**: 
-- **`limit`**: 
+- **`limit`**: 10
 
 ### 16. All the companies on the 'web' `category` that have more than 4000 employees. Sort them by the amount of employees in ascending order.
 
-- **`query`**: {$and: [{category_code: "web", number_of_employees: {$gt:4000}}]}
+- **`query`**: {$and: [{category_code: "web"}, {number_of_employees: {$gt:4000}}]}
 - **`projection`**: 
-- **`sort`**: {number_of_employees: 1}
+- **`sort`**: {number_of_employees: -1}
 - **`skip`**: 
 - **`limit`**: 
 
@@ -140,7 +140,7 @@
 
 ### 18. All the companies that have been acquired on the first trimester of the year. Limit the search to 10 companies, and retrieve only their `name` and `acquisition` fields.
 
-- **`query`**: {founded_month: {$gte: 3}}
+- **`query`**: {founded_month: {$lte: 3}}
 - **`projection`**: {name:1, acquisition:1}
 - **`sort`**: 
 - **`skip`**: 
